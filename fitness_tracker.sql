@@ -1,0 +1,60 @@
+CREATE TABLE USER(
+    USER_ID INT PRIMARY KEY,
+	CUSTOMER_NAME VARCHAR(50) NOT NULL,
+    EMAIL_ID VARCHAR(50) NOT NULL,
+    MOBILE_NUMBER VARCHAR(10) NOT NULL,
+    AGE INT NOT NULL,
+    ADDRESS_LINE1 VARCHAR(100) NOT NULL, 
+	ADDRESS_LINE2 VARCHAR(100) NOT NULL,
+    CITY VARCHAR(50) NOT NULL,
+	STATE VARCHAR(50) NOT NULL,
+    COUNTRY VARCHAR(50) NOT NULL,
+    PINCODE INT NOT NULL,
+    APPOINTMENT_ID INT NOT NULL,
+    foreign key (APPOINTMENT_ID) references APPOINTMENT(APPOINTMENT_ID)
+    
+);
+
+
+create table appointment(
+	APPOINTMENT_ID INT PRIMARY KEY,
+    TRAINER_PREFERENCE varchar(50) NOT NULL,
+    PHYSIOTHERAPIST varchar(50) NOT NULL,
+    PACKAGE int NOT NULL,
+    WEEKS int NOT NULL,
+    AMOUNT int NOT NULL,
+    TRAINER_ID INT NOT NULL,
+    PHYSIOTHERAPIST_ID int not null,
+    foreign key (TRAINER_ID) references TRAINER(TRAINER_ID),
+    foreign key (PHYSIOTHERAPIST_ID) references PHYSIOTHERAPIST(PHYSIOTHERAPIST_ID)
+);
+
+
+create table trainer(
+	TRAINER_ID INT primary key,
+    trainer_name varchar(50) not null,
+    TRAINER_GENDER varchar(10) NOT NUll
+);
+
+create table PHYSIOTHERAPIST(
+	PHYSIOTHERAPIST_ID INT primary key,
+    PHYSIOTHERAPIST_NAME varchar(50) not null
+);
+
+CREATE TABLE COMPANY(
+	EMAIL_ID VARCHAR(50) PRIMARY KEY,
+    PHONE VARCHAR(10) NOT NULL,
+    ADDRESS VARCHAR(200) NOT NULL,
+    FAX VARCHAR(10) NOT NULL
+);
+
+INSERT INTO COMPANY VALUES('fitness.tracker@gmail.com','9930453409','Thane','25891100');
+
+
+INSERT INTO physiotherapist VALUES(1001,'Physio_ABC');
+
+INSERT INTO trainer VALUES(501,'Trainer_ABC','Male');
+
+INSERT INTO appointment VALUES(10502,'Male','Yes',500,2,appointment.PACKAGE*appointment.WEEKS*appointment.sessions,501,1001);
+
+INSERT INTO user VALUES(101,'Aneesh','aneeshpotnis@gmail.com','9934344589',21,'address1','address2','Thane','Maharashtra','India',400607,10501);
